@@ -17,19 +17,22 @@ const userInfo: UserInfo = {
 			name: 'Premium Hoodie',
 			description: 'Soft cotton hoodie, size M',
 			price: 59.99,
-			wallet: 'USD'
+			wallet: 'USD',
+			discovery_date: '2024-01-15'
 		},
 		{
 			name: 'Wireless Headphones',
 			description: 'ANC, 30h battery life',
 			price: 129.99,
-			wallet: 'USD'
+			wallet: 'USD',
+			discovery_date: '2024-01-20'
 		},
 		{
 			name: 'Coffee Beans',
 			description: 'Arabica 1kg, medium roast',
 			price: 18.5,
-			wallet: 'USD'
+			wallet: 'USD',
+			discovery_date: '2024-01-25'
 		}
 	]
 }
@@ -40,7 +43,13 @@ const userInfo2: UserInfo = {
 	email: '',
 	city: '',
 	country: '',
-	orders: []
+	orders: {
+		name: '',
+		description: '',
+		price: 0,
+		wallet: '',
+		discovery_date: ''
+	}
 }
 
 export default function App() {

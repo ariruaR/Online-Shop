@@ -4,10 +4,15 @@
     padding: 30px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     color: white;
-    max-width: 400px;
-    margin: 20px auto;
-    position: relative;
-    overflow: hidden;
+    width: 400px;
+    margin: 20px 0 20px 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 80vh;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
 .profile-card::before {
@@ -25,15 +30,20 @@
 .profile-content {
     position: relative;
     z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-header {
     text-align: center;
     margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .profile-header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     margin: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -45,30 +55,140 @@
     padding: 20px;
     margin-bottom: 25px;
     backdrop-filter: blur(10px);
+    flex-shrink: 0;
 }
 
 .profile-info h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 0 0 10px 0;
     color: #f8f9fa;
 }
 
 .profile-info h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 10px 0;
     color: #e9ecef;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
+
 .profile-info p {
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin: 10px 0;
     color: #dee2e6;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-info p:nth-child(2)::before {
+    content: '📍';
+    font-size: 0.9rem;
+}
+
+.profile-info p:nth-child(3)::before {
+    content: '📧';
+    font-size: 0.9rem;
+}
+
+.orders-section {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.orders-section h3 {
+    font-size: 1.2rem;
+    margin: 0 0 15px 0;
+    color: #f8f9fa;
+    text-align: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Стили для карточек заказов внутри профиля */
+.orders-list .order-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: #333;
+    margin: 0;
+    transform: none;
+    transition: all 0.3s ease;
+}
+
+.orders-list .order-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.orders-list .order-name {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.orders-list .order-price {
+    font-size: 1rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.orders-list .order-description {
+    font-size: 0.9rem;
+    color: #666;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.orders-list .order-discoverydate {
+    font-size: 0.8rem;
+    color: #888;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    border: 1px solid #dee2e6;
+}
+
+.orders-list .order-discoverydate::before {
+    content: '📅';
+    font-size: 10px;
+}
+
+.orders-list .order-btn {
+    gap: 8px;
+    padding-bottom: 0;
+}
+
+.orders-list .order-btn-cancelorder {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    min-width: auto;
+    width: 100%;
 }
 
 .buttons-container {
     display: flex;
     gap: 15px;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .like-button, .dislike-button {
@@ -144,4 +264,46 @@
 
 .profile-card, .error-message {
     animation: fadeInUp 0.6s ease-out;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .profile-card {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin: 10px;
+        max-width: none;
+    }
+    
+    .profile-content {
+        height: auto;
+    }
+    
+    .orders-section {
+        overflow-y: visible;
+    }
+    
+    .orders-list .order-card {
+        margin-bottom: 15px;
+    }
+}
+
+/* Стилизация скроллбара */
+.orders-section::-webkit-scrollbar {
+    width: 6px;
+}
+
+.orders-section::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.orders-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.orders-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
 }

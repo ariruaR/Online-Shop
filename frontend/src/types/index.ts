@@ -16,4 +16,5 @@ export type OrderInfo = {
     amount?: number | bigint;
     price: number | bigint;
     wallet: string;
+    discovery_date: string;
 }
