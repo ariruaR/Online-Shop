@@ -1,9 +1,10 @@
 
 import type { UserInfo } from "../types";
 import "./style/Profile.css"
+import Card from "./Card";
 
 export default function Profile({ userInfo }: {userInfo: UserInfo}) {
-    if (userInfo.name != ""){
+    if (userInfo.name != "" && userInfo.orders){
         return (
             <div className="profile-card">
                 <div className="profile-content">
@@ -11,14 +12,23 @@ export default function Profile({ userInfo }: {userInfo: UserInfo}) {
                         <h1>👤 {userInfo.name}</h1>
                     </div>
                     <div className="profile-info">
-                        <h2>📝 Имя: {userInfo.name}</h2>
-                        <h3>🎂 Возраст: {userInfo.age}</h3>
-                        <p>🌍 Местоположение: {userInfo.city}, {userInfo.country}</p>
-                        <p>📧 Email: {userInfo.email}</p>
+                        <h2> Имя: {userInfo.name}</h2>
+                        <h3> Возраст: {userInfo.age}</h3>
+                        <p> Местоположение: {userInfo.city}, {userInfo.country}</p>
+                        <p> Email: {userInfo.email}</p>
                     </div>
-                    <div className="buttons-container">
-                        <button className="like-button">👍 Лайк</button>
-                        <button className="dislike-button">👎 Дизлайк</button>
+                    <div>
+                        <div>
+                            <h3>Ваши заказы: </h3>
+                            <div className="orders-list">
+                                {Array.isArray(userInfo.orders)
+                                    ? userInfo.orders.map((order, index) => (
+                                        <Card key={(order.name ?? "order") + "-" + index} orderInfo={order} />
+                                    ))
+                                    : <Card orderInfo={userInfo.orders} />
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

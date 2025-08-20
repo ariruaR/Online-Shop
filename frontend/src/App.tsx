@@ -7,30 +7,51 @@ import Profile from './components/Profile';
 import type { UserInfo } from './types';
 
 const userInfo: UserInfo = {
-    name: 'John',
-    age: 23,
-    email: 'john@gmail.com',
-    city: 'New York',
-    country: 'USA',
+	name: 'John',
+	age: 23,
+	email: 'john@gmail.com',
+	city: 'New York',
+	country: 'USA',
+	orders: [
+		{
+			name: 'Premium Hoodie',
+			description: 'Soft cotton hoodie, size M',
+			price: 59.99,
+			wallet: 'USD'
+		},
+		{
+			name: 'Wireless Headphones',
+			description: 'ANC, 30h battery life',
+			price: 129.99,
+			wallet: 'USD'
+		},
+		{
+			name: 'Coffee Beans',
+			description: 'Arabica 1kg, medium roast',
+			price: 18.5,
+			wallet: 'USD'
+		}
+	]
 }
 
 const userInfo2: UserInfo = {
-    name: '',
-    age: 0,
-    email: '',
-    city: '',
-    country: '',
+	name: '',
+	age: 0,
+	email: '',
+	city: '',
+	country: '',
+	orders: []
 }
 
 export default function App() {
-    return (
-        <div className="app">
-            <Routes>
-                <Route path="/" element={<ProfilePreview userInfo={userInfo} />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/profile" element={<Profile userInfo={userInfo} />} />
-            </Routes>
-        </div>
-    )
+	return (
+		<div className="app">
+			<Routes>
+				<Route path="/" element={<ProfilePreview userInfo={userInfo} />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<SignUp />} />
+				<Route path="/profile" element={<Profile userInfo={userInfo} />} />
+			</Routes>
+		</div>
+	)
 }
